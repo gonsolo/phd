@@ -1,0 +1,45 @@
+\chapter{Gonzales on Borg}
+\label{chap:gonzales_on_borg}
+
+\section{Overview}
+
+This chapter describes the integration of \gonzales{} with \borg{},
+producing the first fully open-source hardware path tracer backed by
+physical silicon.
+
+\begin{figure}[h]
+  \centering
+  \todo{System diagram: Gonzales $\to$ ISA compiler $\to$ Borg hardware.}
+  \caption{System overview of \gonzales{} running on \borg{}.}
+  \label{fig:system}
+\end{figure}
+
+\section{Compilation Pipeline}
+
+\subsection{Shader Extraction}
+
+\todo{How \gonzales{}'s Swift shading code is lowered to \borg{} assembly.
+      LLVM backend / custom assembler.}
+
+\subsection{BVH Serialisation}
+
+\todo{Embree BVH exported to \borg{}-compatible binary format.
+      Endianness, node layout, leaf encoding.}
+
+\subsection{Memory Layout}
+
+\todo{Tile buffer, BVH buffer, texture cache placement in address space.}
+
+\section{Workload Partitioning}
+
+\todo{Which path tracing work runs on host (Swift/CPU) vs.\
+      \borg{} (intersection, shading, tile output).}
+
+\section{Correctness Validation}
+
+\todo{Bit-exact comparison against \gonzales{} reference images.
+      Test scene: Cornell box, Veach MIS scene, Moana excerpt.}
+
+\section{Summary}
+
+\todo{What works, what is future work.}

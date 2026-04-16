@@ -1,0 +1,93 @@
+\chapter{Borg: An Open-Source TBDR GPU}
+\label{chap:borg}
+
+\section{Design Goals}
+
+\borg{} is designed around three principles:
+\begin{enumerate}
+  \item \textbf{Open.} Every component -- HDL source, toolchain, tapeout scripts -- is publicly available.
+  \item \textbf{Verifiable.} The implementation runs on both FPGA and real silicon.
+  \item \textbf{Pedagogical.} The architecture is legible: a student can read and understand every module.
+\end{enumerate}
+
+\section{Tile-Based Deferred Rendering Architecture}
+
+\borg{} follows the TBDR paradigm pioneered by PowerVR~\cite{Img1996TBDR}
+and later adopted by Apple~GPU, ARM~Mali, and Vivante.
+Geometry is processed tile-by-tile; only visible fragments are shaded,
+reducing external memory bandwidth significantly.
+
+\subsection{Morton-Encoded Tile Buffer}
+
+The tile buffer uses Morton (Z-curve) encoding for cache-friendly 2D access:
+\begin{equation}
+  \text{addr}(x, y) = \text{interleave\_bits}(x, y)
+\end{equation}
+\todo{Explain interleaving, cache line utilisation, comparison to linear layout.}
+
+\subsection{Rasterizer}
+
+\todo{Edge function rasteriser, subpixel precision, tile dispatch.}
+
+\subsection{Shader Execution Unit}
+
+\todo{Custom ISA, register file, ALU, branch handling.}
+
+\section{Custom ISA}
+
+\todo{Instruction set reference table. Encoding, decode pipeline.}
+
+\section{FPGA Implementation}
+
+\subsection{iCE40 Target}
+
+\borg{} is synthesized for the Lattice iCE40 family using the open-source
+toolchain (Yosys + nextpnr).
+The design fits within the iCE40~UP5K (5280~logic cells).
+
+\subsection{Resource Utilisation}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lrr}
+    \toprule
+    Resource & Used & Available \\
+    \midrule
+    Logic Cells & \todo{N} & 5280 \\
+    BRAMs       & \todo{N} & 30 \\
+    \bottomrule
+  \end{tabular}
+  \caption{iCE40 UP5K resource utilisation.}
+  \label{tab:fpga_util}
+\end{table}
+
+\section{ASIC Tapeout}
+
+\borg{} has been taped out via the Tiny Tapeout programme in two process nodes:
+
+\begin{description}
+  \item[TTIHP26a (IHP SG13G2, 130\,nm)] Floating-point adder peripheral.
+    March 2026. Chips expected July 2026.
+  \item[TTSKY26a (SkyWater SKY130, 130\,nm)] Triangle rasteriser with
+    vertex shader. May 2026.
+  \item[GF180 via Efabless] Diffuse shader ASIC.
+    Funded by the Google Open-Source Silicon Programme. 2022.
+\end{description}
+
+\section{Toolchain}
+
+\begin{description}
+  \item[HDL] Chisel (Scala-based), compiled via FIRRTL to Verilog.
+  \item[Synthesis] Yosys.
+  \item[Place \& Route] nextpnr (FPGA), OpenROAD (ASIC).
+  \item[Simulation] Verilator, cocotb.
+  \item[Register Map] PeakRDL-chisel.
+\end{description}
+
+\section{NLnet Funding}
+
+The \borg{} project is funded by the
+NGI0 Commons Fund, a fund established by NLnet Foundation with financial
+support from the European Commission's Next Generation Internet programme
+(Grant Agreement No.\ 101135429, DG CONNECT), and by the Swiss State
+Secretariat for Education, Research and Innovation (SERI).

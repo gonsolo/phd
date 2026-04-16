@@ -1,0 +1,59 @@
+\chapter{Introduction}
+\label{chap:introduction}
+
+\section{Motivation}
+
+Modern ray tracing GPUs -- NVIDIA RTX, Apple~GPU, Imagination~PowerVR --
+deliver unprecedented rendering performance.
+Yet every component of their ray tracing pipeline is proprietary:
+the ISA, the BVH traversal unit, the shader execution model, the silicon.
+This impedes research in three ways:
+\begin{enumerate}
+  \item \textbf{Non-reproducibility.} Algorithmic results depend on
+    undocumented hardware behaviour.
+  \item \textbf{Non-teachability.} Students learn to use a GPU, not
+    to understand or build one.
+  \item \textbf{Non-extensibility.} Novel architectural ideas cannot be
+    prototyped without access to hardware design tools and foundries.
+\end{enumerate}
+
+This thesis addresses all three problems by building the entire stack
+from first principles and releasing every component as open source.
+
+\section{Contributions}
+
+The main contributions of this thesis are:
+
+\begin{enumerate}
+  \item \textbf{\gonzales{}}: A production-quality, single-author
+    path tracer capable of rendering the Disney Moana island scene.
+    (\autoref{chap:gonzales})
+
+  \item \textbf{\borg{}}: A Tile-Based Deferred Rendering GPU,
+    implemented in Chisel, synthesized on FPGA, and taped out in
+    GlobalFoundries 180\,nm silicon.
+    (\autoref{chap:borg})
+
+  \item \textbf{Ray tracing ISA extensions} for \borg{},
+    enabling BVH traversal and intersection testing on hardware.
+    (\autoref{chap:isa})
+
+  \item \textbf{Gonzales-on-Borg}: The first demonstration of a
+    production path tracer running on fully open-source hardware.
+    (\autoref{chap:gonzales_on_borg})
+
+  \item A comprehensive \textbf{evaluation} against CPU (Embree) and
+    GPU (NVIDIA RTX) reference implementations.
+    (\autoref{chap:evaluation})
+\end{enumerate}
+
+\section{Thesis Outline}
+
+\autoref{chap:background} establishes the theoretical and architectural
+background.
+\autoref{chap:gonzales} presents the \gonzales{} renderer.
+\autoref{chap:borg} describes the \borg{} GPU architecture.
+\autoref{chap:isa} introduces the ray tracing ISA extensions.
+\autoref{chap:gonzales_on_borg} presents the integrated system.
+\autoref{chap:evaluation} evaluates performance and correctness.
+\autoref{chap:conclusion} concludes and outlines future work.

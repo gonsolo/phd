@@ -1,0 +1,55 @@
+\chapter{Gonzales: A Production Path Tracer}
+\label{chap:gonzales}
+
+\section{Overview}
+
+\gonzales{} is a physically based path tracer written from scratch in Swift.
+It is, to our knowledge, the only single-author renderer capable of
+processing Disney's \emph{Moana} island scene~\cite{Disney2018Moana}
+in its entirety -- 130\,GB of geometry, textures, and shading data.
+
+\begin{figure}[h]
+  \centering
+  \todo{Insert rendered Moana image here.}
+  \caption{The Disney Moana island scene rendered by \gonzales{}.}
+  \label{fig:moana}
+\end{figure}
+
+\section{System Architecture}
+
+\subsection{Scene Loading and Parsing}
+
+\todo{PBRT scene format, Ptex textures, instancing.}
+
+\subsection{Acceleration Structure}
+
+\gonzales{} uses Intel Embree~\cite{Wald2014Embree} for BVH construction
+and ray-scene intersection.
+Integration of Embree reduced render time of the Moana scene from
+26~hours to 78~minutes.
+
+\subsection{Material System}
+
+\todo{Disney BRDF, multiple importance sampling, Veach 1997.}
+
+\subsection{Integrator}
+
+\todo{Path tracing integrator, Russian roulette, NEE.}
+
+\section{The Moana Benchmark}
+
+\todo{Scene statistics, validation against reference images, timing.}
+
+\section{Implementation Notes}
+
+\gonzales{} is implemented in approximately \todo{N} lines of Swift.
+The choice of Swift over C++ provides memory safety, value-type semantics
+for geometric primitives, and protocol-based polymorphism for materials
+and integrators -- without sacrificing performance on hot paths.
+
+\section{Summary}
+
+\gonzales{} demonstrates that a single engineer can build a production-quality
+renderer comparable in capability to team-built systems.
+It serves as the software reference implementation for the integrated
+\gonzales{}-on-\borg{} system described in \autoref{chap:gonzales_on_borg}.

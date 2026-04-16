@@ -1,0 +1,57 @@
+\chapter{Ray Tracing ISA Extensions for Borg}
+\label{chap:isa}
+
+\section{Motivation}
+
+Standard rasterisation pipelines are ill-suited for rays:
+a ray-scene intersection test requires traversing a hierarchical
+acceleration structure (BVH) whose depth and branching factor are
+data-dependent.
+NVIDIA addressed this with dedicated RT Cores in Turing; we address it
+via ISA extensions to \borg{}'s existing scalar shader pipeline.
+
+\section{BVH Fundamentals}
+
+\todo{BVH construction (SAH), traversal algorithm, stack management.}
+
+\section{New Instructions}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    Mnemonic & Operands & Description \\
+    \midrule
+    \texttt{RAY.INIT}   & rd, rs1, rs2 & Initialise ray (origin + direction) \\
+    \texttt{BVH.PUSH}   & rs1          & Push BVH node onto traversal stack  \\
+    \texttt{BVH.TEST}   & rd, rs1      & AABB intersection test              \\
+    \texttt{TRI.ISECT}  & rd, rs1      & Möller–Trumbore triangle intersection \\
+    \texttt{RAY.RESULT} & rd           & Read closest hit record             \\
+    \bottomrule
+  \end{tabular}
+  \caption{Ray tracing ISA extensions.}
+  \label{tab:isa_rt}
+\end{table}
+
+\section{Hardware Implementation}
+
+\subsection{AABB Intersection Unit}
+
+\todo{Parametric slab method. Floating-point pipeline. Latency.}
+
+\subsection{Möller–Trumbore Unit}
+
+\todo{Triangle intersection. Edge vectors, barycentric coordinates.}
+
+\subsection{Traversal Stack}
+
+\todo{Dedicated BRAM-backed stack. Depth limit. Stack overflow handling.}
+
+\section{Integration with the Shader Pipeline}
+
+\todo{How new instructions slot into the existing scalar execution unit.
+      Stall/forwarding behaviour.}
+
+\section{Summary}
+
+\todo{Area overhead estimate. Expected throughput.}

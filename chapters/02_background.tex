@@ -1,0 +1,59 @@
+\chapter{Background}
+\label{chap:background}
+
+\section{Physically Based Rendering}
+
+\subsection{The Rendering Equation}
+
+The rendering equation, introduced by Kajiya~\cite{Kajiya1986}, describes
+the equilibrium distribution of light in a scene:
+\begin{equation}
+  L_o(\mathbf{x}, \omega_o) =
+    L_e(\mathbf{x}, \omega_o) +
+    \int_{\Omega}
+      f_r(\mathbf{x}, \omega_i, \omega_o)\,
+      L_i(\mathbf{x}, \omega_i)\,
+      (\omega_i \cdot \mathbf{n})\,
+    \mathrm{d}\omega_i
+  \label{eq:rendering}
+\end{equation}
+where $L_o$ is outgoing radiance, $L_e$ is emitted radiance,
+$f_r$ is the BRDF, and $\Omega$ is the hemisphere of incoming directions.
+
+\subsection{Monte Carlo Integration}
+
+\todo{Summarize MC integration, importance sampling, MIS (Veach 1997).}
+
+\subsection{Path Tracing}
+
+\todo{Algorithm overview; Kajiya 1986, Veach 1997.}
+
+\section{GPU Architecture}
+
+\subsection{Tile-Based Deferred Rendering (TBDR)}
+
+\todo{Explain TBDR: PowerVR, Apple GPU, ARM Mali, Vivante.
+Morton encoding. Bandwidth reduction.}
+
+\subsection{Ray Tracing Hardware}
+
+\todo{BVH, traversal units, NVIDIA RT Core, Intel Xe,
+      RPU (Woop et al.\ 2005).}
+
+\section{Open-Source Hardware}
+
+\subsection{RISC-V Ecosystem}
+
+\todo{Brief overview of open ISA movement.}
+
+\subsection{Chisel and High-Level HDL}
+
+\todo{Chisel/FIRRTL, generators, type-safe HDL.}
+
+\subsection{Related Open-Source GPUs}
+
+\begin{description}
+  \item[Nyuzi] GPGPU vector processor by Jeff Bush. No tapeout.
+  \item[Vortex] RISC-V based GPGPU from Georgia Tech. Research only.
+  \item[\borg{}] (this work) TBDR GPU with physical tapeout.
+\end{description}

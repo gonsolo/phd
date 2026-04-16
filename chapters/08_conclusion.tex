@@ -1,0 +1,56 @@
+\chapter{Conclusion and Future Work}
+\label{chap:conclusion}
+
+\section{Summary of Contributions}
+
+This thesis has presented:
+
+\begin{enumerate}
+  \item \textbf{\gonzales{}}: a production path tracer, sole-authored,
+    capable of rendering Disney's Moana island scene.
+  \item \textbf{\borg{}}: the first open-source GPU backed by physical
+    silicon tapeout, implementing TBDR with Morton-encoded tile buffers.
+  \item \textbf{Ray tracing ISA extensions} enabling \borg{} to
+    perform hardware-accelerated BVH traversal and triangle intersection.
+  \item \textbf{Gonzales-on-Borg}: a demonstration of path tracing
+    on fully open hardware -- reproducible, inspectable, extensible.
+\end{enumerate}
+
+We believe this work establishes the first genuinely open hardware
+research platform for physically based rendering.
+
+\section{Future Work}
+
+\subsection{Short Term}
+
+\begin{itemize}
+  \item Full Moana island scene on \borg{} (requires tiled streaming).
+  \item Wavefront path tracing to improve hardware utilisation.
+  \item Vulkan 1.0 conformance layer on \borg{}.
+\end{itemize}
+
+\subsection{Medium Term}
+
+\begin{itemize}
+  \item Multi-tile (chiplet) \borg{} configuration via LiteX/PCIe.
+  \item ReSTIR direct lighting in \borg{} hardware.
+  \item ECP5 / Artix-7 ports for higher logic capacity.
+\end{itemize}
+
+\subsection{Long Term}
+
+\begin{itemize}
+  \item Full hardware BVH builder on \borg{}.
+  \item Open-source competitor level comparison with NVIDIA Turing RT Core
+    at equivalent process node.
+  \item Use as pedagogical platform: a student can build a working GPU
+    from this thesis in one semester.
+\end{itemize}
+
+\section{Closing Remark}
+
+Eric Veach's 1997 dissertation established the mathematical foundations
+of Monte Carlo light transport.
+This thesis hopes to do for hardware what Veach did for algorithms:
+provide a rigorous, reproducible, and freely available foundation
+that others can build upon.

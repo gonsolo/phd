@@ -1,0 +1,68 @@
+\chapter{Evaluation}
+\label{chap:evaluation}
+
+\section{Experimental Setup}
+
+\subsection{Reference Implementations}
+
+We compare against two baselines:
+\begin{description}
+  \item[CPU baseline] \gonzales{} running on an AMD/Intel host CPU
+    with Intel Embree acceleration.
+  \item[GPU baseline] \gonzales{} or PBRT-v4 on NVIDIA RTX hardware
+    (RT Core accelerated BVH traversal).
+\end{description}
+
+\subsection{Test Scenes}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lrrr}
+    \toprule
+    Scene & Triangles & Lights & Reference \\
+    \midrule
+    Cornell Box       & 36        & 1    & Jensen 1996 \\
+    Veach MIS         & \todo{N}  & 5    & Veach 1997~\cite{Veach1997} \\
+    Moana Island (excerpt) & \todo{N}M & \todo{N} & Disney 2018~\cite{Disney2018Moana} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Evaluation scenes.}
+\end{table}
+
+\section{Correctness}
+
+\todo{RMSE against reference; visual comparison; firefly analysis.}
+
+\section{Performance}
+
+\subsection{Render Time Comparison}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{lrrr}
+    \toprule
+    System & Cornell & Veach & Moana (excerpt) \\
+    \midrule
+    CPU (Embree)     & \todo{t} & \todo{t} & \todo{t} \\
+    NVIDIA RTX       & \todo{t} & \todo{t} & \todo{t} \\
+    \borg{} (FPGA)   & \todo{t} & \todo{t} & \todo{t} \\
+    \borg{} (ASIC)   & \todo{t} & —        & —        \\
+    \bottomrule
+  \end{tabular}
+  \caption{Render times at 256 spp, 1080p (excerpt for Moana).}
+\end{table}
+
+\subsection{Performance-per-Watt}
+
+\todo{Power measurements on iCE40 FPGA. Comparison normalised by TDP.}
+
+\section{Area and Resource Analysis}
+
+\todo{Logic cell usage increase from ray tracing extensions.
+      Compare to RT Core die area (estimated from literature).}
+
+\section{Discussion}
+
+\todo{Where \borg{} is competitive (bandwidth efficiency, openness).
+      Where it falls short (raw throughput vs.\ RTX).
+      Architectural lessons.}

@@ -1,0 +1,41 @@
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Physically based rendering has matured into a reliable foundation for
+film production, game engines, and scientific visualization.
+Yet the hardware that accelerates rendering -- modern ray tracing GPUs --
+remains entirely proprietary: closed ISA, closed microarchitecture,
+closed silicon.
+This makes independent verification, teaching, and further research
+difficult or impossible.
+
+This thesis presents \gonzales{} and \borg{} -- two complementary
+open-source systems that together form the first fully open hardware
+path tracing architecture backed by actual silicon:
+
+\medskip
+\begin{description}
+  \item[\gonzales{}] is a production-quality path tracer written in Swift,
+    capable of rendering Disney's \emph{Moana} island scene
+    (130\,GB of input data) -- to our knowledge the only single-author
+    renderer able to do so.
+    It serves as the software reference implementation and benchmark driver.
+
+  \item[\borg{}] is a Tile-Based Deferred Rendering (TBDR) GPU
+    implemented in Chisel, synthesized on iCE40 FPGAs and taped out in
+    GlobalFoundries 180\,nm silicon via the Tiny Tapeout programme.
+    It is, to our knowledge, the first open-source GPU
+    for which a physical tapeout has been completed.
+\end{description}
+
+\medskip
+We extend \borg{}'s instruction set architecture with ray-scene
+intersection primitives and demonstrate path tracing workloads
+running on \borg{} hardware.
+The resulting system provides a fully reproducible, peer-reviewable
+hardware platform for rendering research -- closing the gap that has
+existed since the earliest ray tracing hardware proposals.
+
+We evaluate the system against CPU-based rendering (Intel Embree) and
+commercial GPU ray tracing (NVIDIA RTX), and discuss architectural
+trade-offs for embedded and FPGA-class devices.

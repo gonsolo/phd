@@ -1,0 +1,100 @@
+% Open Hardware Path Tracing: From Silicon to Production Scenes
+% PhD Thesis -- Andreas Wendleder
+
+\documentclass[
+  12pt,
+  a4paper,
+  twoside,
+  openright,
+  BCOR=12mm,       % binding correction
+  headings=normal,
+  bibliography=totoc,
+  listof=totoc,
+]{scrbook}
+
+% ── Encoding & Language ────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% ── Typography ─────────────────────────────────────────────────────────────
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{setspace}
+\onehalfspacing
+
+% ── Math ───────────────────────────────────────────────────────────────────
+\usepackage{amsmath, amssymb, amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+% ── Graphics & Figures ─────────────────────────────────────────────────────
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{subcaption}
+\usepackage{booktabs}   % professional tables
+\usepackage{xcolor}
+\usepackage{tikz}
+
+% ── Code Listings ──────────────────────────────────────────────────────────
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries\color{blue!70!black},
+  commentstyle=\itshape\color{green!50!black},
+  stringstyle=\color{orange!80!black},
+  numbers=left, numberstyle=\tiny,
+  frame=single, breaklines=true,
+  captionpos=b,
+}
+
+
+% ── Hyperlinks & PDF metadata ──────────────────────────────────────────────
+\usepackage[
+  pdftitle={Open Hardware Path Tracing: From Silicon to Production Scenes},
+  pdfauthor={Andreas Wendleder},
+  pdfkeywords={path tracing, GPU architecture, open source hardware,
+               tile-based rendering, ray tracing, FPGA, ASIC},
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=blue!60!black,
+  urlcolor=blue!60!black,
+]{hyperref}
+
+% ── Bibliography ─────────────────────────────────────────────────────────────
+\usepackage[numbers,sort&compress]{natbib}
+
+% ── Custom commands ────────────────────────────────────────────────────────
+\newcommand{\gonzales}{\textsc{Gonzales}}
+\newcommand{\borg}{\textsc{Borg}}
+\newcommand{\eg}{e.g.,\xspace}
+\newcommand{\ie}{i.e.,\xspace}
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
+
+% ══════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+\frontmatter
+\include{frontmatter/titlepage}
+\include{frontmatter/abstract}
+\include{frontmatter/acknowledgements}
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+\include{chapters/01_introduction}
+\include{chapters/02_background}
+\include{chapters/03_gonzales}
+\include{chapters/04_borg}
+\include{chapters/05_isa_extensions}
+\include{chapters/06_gonzales_on_borg}
+\include{chapters/07_evaluation}
+\include{chapters/08_conclusion}
+
+\backmatter
+\bibliographystyle{abbrvnat}
+\bibliography{bibliography}
+
+\end{document}
