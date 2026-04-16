@@ -18,7 +18,6 @@
 \usepackage{amsmath,amssymb}
 \usepackage{xcolor}
 \usepackage{enumitem}
-\usepackage{hyperref}
 \newcommand{\todo}[1]{\textcolor{red}{[#1]}}
 
 % ── Custom colours ─────────────────────────────────────────────────────────
@@ -36,7 +35,7 @@
 \author{Andreas Wendleder}
 \institute{Independent Researcher, Landshut, Germany
            \quad \texttt{andreas.wendleder@proton.me}
-           \quad \url{https://github.com/gonsolo/Borg}}
+           \quad \texttt{github.com/gonsolo/Borg}}
 \date{HPG 2026, Los Angeles}
 
 % ══════════════════════════════════════════════════════════════════════════
@@ -55,12 +54,12 @@ and silicon layout proprietary.
 This impedes \textbf{reproducibility}, \textbf{teaching}, and
 \textbf{architectural experimentation}.
 
-\vspace{0.5em}
+\medskip
 \textbf{Borg} is a fully open response: a Tile-Based Deferred Rendering
 (TBDR) GPU implemented in Chisel, synthesized with an open toolchain,
 and submitted to physical silicon — twice.
 
-\vspace{0.5em}
+\medskip
 \textbf{Key claim:} \emph{To our knowledge, Borg is the only open-source GPU
 for which a physical ASIC tapeout has been completed.}
 }
@@ -70,7 +69,7 @@ Borg follows the Tile-Based Deferred Rendering paradigm used by
 \textbf{PowerVR / Imagination Technologies}, \textbf{Apple GPU},
 \textbf{ARM Mali}, and \textbf{Vivante}:
 
-\vspace{0.5em}
+\medskip
 \begin{center}
 \begin{tikzpicture}[
   box/.style={draw=borgblue, fill=borgblue!10, rounded corners,
@@ -92,7 +91,7 @@ Borg follows the Tile-Based Deferred Rendering paradigm used by
 \end{tikzpicture}
 \end{center}
 
-\vspace{0.5em}
+\medskip
 Geometry is processed tile-by-tile; only \emph{visible} fragments are
 shaded, minimising external memory bandwidth — critical for embedded
 FPGAs with limited PSRAM bandwidth.
@@ -103,7 +102,7 @@ FPGAs with limited PSRAM bandwidth.
 \block{Completed Pipeline (Steps 1–20)}{
 All 20 steps completed in \textbf{28 days} (19 Mar – 14 Apr 2026):
 
-\vspace{0.5em}
+\medskip
 \begin{tabular}{@{}clr@{}}
 \toprule
 & \textbf{Component} & \textbf{Date} \\
@@ -139,7 +138,7 @@ Running on \textbf{pico-ice} (iCE40 UP5K, 5280 LCs):
   \item CPU-orchestrated (GPU autonomy = Phase 2, in progress)
 \end{itemize}
 
-\vspace{0.5em}
+\medskip
 \textbf{Bandwidth note:} Current bottleneck is shared CPU/GPU PSRAM access.
 GPU DMA engine (Step 22) will eliminate CPU involvement in rendering.
 }
@@ -159,7 +158,7 @@ DSPs           & 0            & 8 \\
 \end{tabular}
 \end{center}
 
-\vspace{0.5em}
+\medskip
 Operating within a \$20 FPGA forces disciplined area optimisation:
 nibble-serial FMAs, shared memory controllers,
 and PeakRDL-generated register files contribute to fitting
@@ -177,7 +176,7 @@ GF180    & GlobalFoundries 180\,nm& Diffuse shader ASIC & 2022 \\
 \bottomrule
 \end{tabular}
 
-\vspace{0.5em}
+\medskip
 All tapeouts via the \textbf{Tiny Tapeout} open-access silicon programme
 and the \textbf{Google Open-Source Silicon Programme}.
 Chips for TTIHP26a expected July 2026.
@@ -212,6 +211,12 @@ Focus           & Graphics& Compute & Compute \\
 }
 
 \block{Funding}{
+\begin{center}
+\includegraphics[height=2cm]{figures/nlnet_logo}
+\qquad
+\includegraphics[height=2cm]{figures/ngi0_logo}
+\end{center}
+\medskip
 Borg is funded by the \textbf{NGI0 Commons Fund}, established by
 NLnet Foundation with financial support from the European Commission's
 Next Generation Internet programme
