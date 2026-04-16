@@ -9,9 +9,9 @@ poster:
 	-$(PDFLATEX) -interaction=nonstopmode poster.tex
 
 abstract:
-	$(LATEXMK) -pdf -interaction=nonstopmode abstract.tex
+	-$(LATEXMK) -pdf -f -interaction=nonstopmode abstract.tex
 
-view: all
+view: poster
 	papers poster.pdf
 
 viewabstract: abstract
