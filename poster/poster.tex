@@ -11,7 +11,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage{microtype}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -20,6 +19,7 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\newcommand{\todo}[1]{\textcolor{red}{[#1]}}
 
 % ── Custom colours ─────────────────────────────────────────────────────────
 \definecolor{borgblue}{HTML}{1A3C5E}
@@ -153,7 +153,7 @@ GPU DMA engine (Step 22) will eliminate CPU involvement in rendering.
 \textbf{Resource} & \textbf{Used} & \textbf{Available} \\
 \midrule
 Logic Cells    & $\sim$5\,100  & 5\,280 \\
-BRAMs (4 kb)   & \todo{N}     & 30 \\
+BRAMs (4 kb)   & $\sim$10     & 30 \\
 DSPs           & 0            & 8 \\
 \bottomrule
 \end{tabular}
