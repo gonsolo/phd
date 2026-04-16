@@ -6,7 +6,7 @@ PDFLATEX = pdflatex
 all: poster abstract
 
 poster:
-	$(PDFLATEX) -interaction=nonstopmode poster.tex
+	-$(PDFLATEX) -interaction=nonstopmode poster.tex
 
 abstract:
 	$(LATEXMK) -pdf -interaction=nonstopmode abstract.tex
