@@ -4,8 +4,40 @@
 \documentclass[a0paper,landscape,20pt]{tikzposter}
 
 % ── Theme ──────────────────────────────────────────────────────────────────
-\usetheme{Rays}
-\usecolorstyle{Spain}   % dark blue + orange accent; swap as desired
+\usetheme{Simple}
+\useblockstyle{Basic}
+
+% ── Monochromatic navy palette ──────────────────────────────────────────────
+\definecolor{monoDeep}{HTML}{0D1F33}   % near-black navy
+\definecolor{monoDark}{HTML}{1A3C5E}   % borgblue
+\definecolor{monoMid} {HTML}{2E5F8A}   % mid navy
+\definecolor{monoLight}{HTML}{D6E4F0}  % very pale blue
+
+\definecolorstyle{Mono}{
+  % colour definitions (unused — defined above)
+}{
+  \colorlet{backgroundcolor}{white}
+  \colorlet{framecolor}{monoDeep}
+  % title bar
+  \colorlet{titlebgcolor}{monoDeep}
+  \colorlet{titlefgcolor}{white}
+  % block title
+  \colorlet{blocktitlebgcolor}{monoDark}
+  \colorlet{blocktitlefgcolor}{white}
+  % block body
+  \colorlet{blockbodybgcolor}{monoLight!60}
+  \colorlet{blockbodyfgcolor}{black}
+  % inner block
+  \colorlet{innerblocktitlebgcolor}{monoMid}
+  \colorlet{innerblocktitlefgcolor}{white}
+  \colorlet{innerblockbodybgcolor}{monoLight!30}
+  \colorlet{innerblockbodyfgcolor}{black}
+  % notes
+  \colorlet{notebgcolor}{monoLight}
+  \colorlet{notefgcolor}{monoDeep}
+  \colorlet{notefrcolor}{monoDark}
+}
+\usecolorstyle{Mono}
 
 % ── Packages ───────────────────────────────────────────────────────────────
 \usepackage[utf8]{inputenc}
@@ -18,6 +50,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{url}
 \newcommand{\todo}[1]{\textcolor{red}{[#1]}}
 
 % ── Custom colours ─────────────────────────────────────────────────────────
@@ -27,14 +60,15 @@
 
 % ── Custom block style ─────────────────────────────────────────────────────
 \newcommand{\done}{\textcolor{borggreen}{$\checkmark$}}
-\newcommand{\inprog}{\textcolor{borgorange}{\textbf{[wip]}}}
+\newcommand{\inprog}{{\textcolor{monoMid}{\textbf{[wip]}}}}
 
 % ── Title ──────────────────────────────────────────────────────────────────
 \title{\textbf{Borg}: Open-Source Tile-Based GPU with Silicon Tapeout}
 \author{Andreas Wendleder}
 \institute{Independent Researcher, Landshut, Germany
            \quad \texttt{andreas.wendleder@proton.me}
-           \quad \texttt{github.com/gonsolo/Borg}}
+           \quad \texttt{github.com/gonsolo/Borg}
+           \quad \texttt{orcid.org/0009-0008-8304-2818}}
 \date{HPG 2026, Los Angeles}
 
 % ══════════════════════════════════════════════════════════════════════════

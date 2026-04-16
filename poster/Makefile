@@ -11,10 +11,12 @@ poster:
 abstract:
 	-$(LATEXMK) -pdf -f -interaction=nonstopmode abstract.tex
 
-view: poster
+view:
+	@test -f poster.pdf || $(MAKE) poster
 	papers poster.pdf
 
-viewabstract: abstract
+viewabstract:
+	@test -f abstract.pdf || $(MAKE) abstract
 	papers abstract.pdf
 
 clean:

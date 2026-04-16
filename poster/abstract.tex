@@ -1,11 +1,13 @@
 % Borg: Extended Abstract for HPG 2026 Poster Track
 % 2 pages, SIGGRAPH-style ACM format
 
-\documentclass[sigconf,review]{acmart}
+\documentclass[sigconf,review,natbib=false]{acmart}
 
 \usepackage{booktabs}
 \usepackage{microtype}
 \usepackage{xcolor}
+\usepackage[backend=biber,style=acmnumeric]{biblatex}
+\addbibresource{../bibliography.bib}
 \newcommand{\todo}[1]{\textcolor{red}{[#1]}}
 \usepackage{xcolor}
 \definecolor{borgblue}{HTML}{1A3C5E}
@@ -19,6 +21,7 @@
        with ASIC Tapeout on 5280 Logic Cells}
 
 \author{Andreas Wendleder}
+\orcid{0009-0008-8304-2818}
 \affiliation{%
   \institution{Independent Researcher}
   \city{Landshut}
@@ -155,7 +158,6 @@ Next Generation Internet programme
 and by the Swiss State Secretariat for Education, Research and
 Innovation (SERI).
 
-\bibliographystyle{ACM-Reference-Format}
-\bibliography{../bibliography}
+\printbibliography
 
 \end{document}
