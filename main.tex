@@ -62,8 +62,16 @@
   urlcolor=blue!60!black,
 ]{hyperref}
 
+% ── Algorithms ─────────────────────────────────────────────────────────────
+\usepackage[ruled,vlined]{algorithm2e}
+
 % ── Bibliography ─────────────────────────────────────────────────────────────
-\usepackage[numbers,sort&compress]{natbib}
+\usepackage[
+  backend=biber,
+  style=alphabetic,
+  sorting=nyt,
+]{biblatex}
+\addbibresource{bibliography.bib}
 
 % ── Custom commands ────────────────────────────────────────────────────────
 \newcommand{\gonzales}{\textsc{Gonzales}}
@@ -94,7 +102,6 @@
 \include{chapters/08_conclusion}
 
 \backmatter
-\bibliographystyle{abbrvnat}
-\bibliography{bibliography}
+\printbibliography
 
 \end{document}

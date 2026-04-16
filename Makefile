@@ -4,10 +4,10 @@ MAIN    = main
 .PHONY: all clean
 
 all:
-	$(LATEXMK) -pdf -bibtex -interaction=nonstopmode $(MAIN).tex
+	$(LATEXMK) -pdf -interaction=nonstopmode $(MAIN).tex
 
 watch:
-	$(LATEXMK) -pdf -bibtex -pvc $(MAIN).tex
+	$(LATEXMK) -pdf -pvc $(MAIN).tex
 
 clean:
 	$(LATEXMK) -CA
