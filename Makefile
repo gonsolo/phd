@@ -9,6 +9,9 @@ all:
 watch:
 	$(LATEXMK) -pdf -pvc $(MAIN).tex
 
+view: all
+	papers $(MAIN).pdf
+
 clean:
 	$(LATEXMK) -CA
 	rm -f *.bbl *.run.xml
