@@ -1,0 +1,159 @@
+% Borg: Extended Abstract for HPG 2026 Poster Track
+% 2 pages, SIGGRAPH-style ACM format
+
+\documentclass[sigconf,review]{acmart}
+
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{xcolor}
+\definecolor{borgblue}{HTML}{1A3C5E}
+
+\acmConference[HPG '26]{High-Performance Graphics}{July 17--19, 2026}{Los Angeles, CA}
+\acmYear{2026}
+
+\begin{document}
+
+\title{Borg: A Complete Open-Source TBDR GPU Pipeline\\
+       with ASIC Tapeout on 5280 Logic Cells}
+
+\author{Andreas Wendleder}
+\affiliation{%
+  \institution{Independent Researcher}
+  \city{Landshut}
+  \country{Germany}
+}
+\email{andreas.wendleder@proton.me}
+
+\begin{abstract}
+We present \textsc{Borg}, a Tile-Based Deferred Rendering (TBDR) GPU
+implemented in Chisel (a Scala-based hardware description language),
+synthesized with an open-source toolchain, and submitted to physical
+ASIC fabrication via the Tiny Tapeout programme.
+The complete rendering pipeline — vertex shader, triangle clipping,
+edge function rasterizer, texture fetch, Z-buffer, and fragment
+interpolation — fits within 5{,}280 logic cells of a Lattice iCE40 UP5K FPGA.
+To our knowledge, \textsc{Borg} is the first open-source GPU
+for which a physical ASIC tapeout has been completed.
+We describe the architecture, design decisions, resource budget,
+and a path toward hardware-accelerated path tracing.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Modern GPU architectures are opaque by design.
+Every shipped GPU conceals its microarchitecture, instruction set,
+and physical layout behind NDAs or proprietary binaries.
+This constrains rendering research in three ways:
+results are non-reproducible, architectural experiments require
+expensive EDA licenses, and teaching stops at the API boundary.
+
+\textsc{Borg} is a fully open alternative.
+Every component — Chisel HDL source, synthesis scripts, place-and-route
+configuration, and tapeout submission packages — is publicly available
+at \url{https://github.com/gonsolo/Borg} under a permissive licence.
+
+\section{Architecture}
+
+\textsc{Borg} implements the \emph{Tile-Based Deferred Rendering} (TBDR)
+paradigm, processing geometry tile-by-tile so that shading is applied
+only to visible fragments.
+This approach, also used by PowerVR/Imagination Technologies, Apple GPU,
+ARM Mali, and Vivante, reduces external memory bandwidth — important
+for FPGA designs with limited PSRAM throughput.
+
+The pipeline comprises six hardware stages:
+\begin{enumerate}
+  \item \textbf{Vertex Shader:} Perspective projection via a hardware
+    reciprocal unit (RCP), executing a custom RISC-V-derived 32-bit ISA.
+  \item \textbf{Triangle Clipping:} Sutherland-Hodgman clip against
+    the tile viewport.
+  \item \textbf{Edge Function Unit:} Pineda-style signed area test,
+    one pixel per clock.
+  \item \textbf{Texture Fetch:} Nearest-neighbour UV sampling from PSRAM
+    via a shared memory controller.
+  \item \textbf{Fragment Interpolation + Z-Buffer:} Perspective-correct
+    barycentric attribute interpolation with depth test.
+  \item \textbf{Tile Buffer:} On-chip BRAM with Morton (Z-curve) encoding
+    for cache-friendly 2-D access.
+\end{enumerate}
+
+A command FIFO decouples the CPU from the rendering pipeline.
+A SystemRDL register map (generated via PeakRDL-chisel) provides
+a clean software interface.
+
+\section{Resource Budget}
+
+\begin{table}[h]
+  \centering
+  \caption{iCE40 UP5K resource utilisation (pico-ice board).}
+  \begin{tabular}{@{}lrr@{}}
+    \toprule
+    Resource & Used & Available \\
+    \midrule
+    Logic Cells & $\sim$5\,100 & 5\,280 \\
+    4\,kb BRAMs & \todo{N} & 30 \\
+    DSPs        & 0 & 8 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The iCE40 UP5K provides no DSP blocks usable for FP multiply-add;
+all floating-point computation is implemented in soft logic.
+
+\section{ASIC Tapeouts}
+
+\begin{table}[h]
+  \centering
+  \caption{Physical tapeouts submitted as part of the Borg project.}
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    Run & Process & Content & Submitted \\
+    \midrule
+    GF180    & GF 180\,nm   & Diffuse shader ASIC    & 2022 \\
+    TTIHP26a & IHP 130\,nm  & FP adder peripheral    & Mar 2026 \\
+    TTSKY26a & SKY130       & Triangle rasteriser    & May 2026 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The GF180 tapeout was funded by the Google Open-Source Silicon Programme;
+TTIHP26a and TTSKY26a via the Tiny Tapeout programme.
+Chips for TTIHP26a are expected in July 2026.
+
+\section{Comparison with Related Open GPU Projects}
+
+\textsc{Nyuzi}~\cite{Bush2015Nyuzi} is an open GPGPU targeting compute
+workloads (no rasterisation pipeline, no tapeout).
+\textsc{Vortex}~\cite{Vortex2021} is a RISC-V GPGPU targeting research
+on GPU computing; it targets Xilinx FPGAs and has not been taped out.
+\textsc{Borg} differs in focus (graphics, not compute),
+architecture (TBDR, not SIMD lanes), and,
+critically, in having submitted physical silicon.
+
+\section{Current Status and Future Work}
+
+Phase 1 (Steps 1–20: the full rendering pipeline) is complete.
+Phase 2 (GPU autonomy — DMA engine, write port, vertex sequencer)
+is in progress and will remove CPU orchestration from the render loop.
+Phase 3 plans a Linux-capable CPU integration, and Phase 4 targets
+a minimal Mesa Vulkan driver.
+
+The longer-term goal is integration with \textsc{Gonzales}~\cite{Wendleder2024Gonzales},
+a production path tracer, to create the first fully open-source hardware
+path tracing system.
+
+\section{Acknowledgements}
+
+The Borg project is funded by the NGI0 Commons Fund established by
+NLnet Foundation with financial support from the European Commission's
+Next Generation Internet programme
+(Grant Agreement No.~101135429, DG CONNECT),
+and by the Swiss State Secretariat for Education, Research and
+Innovation (SERI).
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{../bibliography}
+
+\end{document}
