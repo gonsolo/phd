@@ -5,14 +5,15 @@ PDFLATEX = pdflatex
 
 all: poster abstract
 
-poster:
+poster: poster.pdf
+
+poster.pdf: poster.tex
 	-$(PDFLATEX) -interaction=nonstopmode poster.tex
 
 abstract:
 	-$(LATEXMK) -pdf -f -interaction=nonstopmode abstract.tex
 
-view:
-	@test -f poster.pdf || $(MAKE) poster
+view: poster.pdf
 	papers poster.pdf
 
 viewabstract:
