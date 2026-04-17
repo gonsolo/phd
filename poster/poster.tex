@@ -7,19 +7,20 @@
 \usetheme{Simple}
 \useblockstyle{Basic}
 
-% ── Monochromatic navy palette ──────────────────────────────────────────────
-\definecolor{monoDeep}{HTML}{0D1F33}   % near-black navy
-\definecolor{monoDark}{HTML}{1A3C5E}   % borgblue
-\definecolor{monoMid} {HTML}{2E5F8A}   % mid navy
-\definecolor{monoLight}{HTML}{D6E4F0}  % very pale blue
+% ── Teal palette (derived from vkcube_00.png render) ───────────────────────
+\definecolor{monoDeep}{HTML}{082830}   % near-black teal (from vkcube)
+\definecolor{monoDark}{HTML}{085868}   % dark teal  (dominant vkcube hue)
+\definecolor{monoMid} {HTML}{2E6878}   % mid teal
+\definecolor{monoLight}{HTML}{C8E8E8}  % very pale teal
+\definecolor{vkbg}    {HTML}{323232}   % vkcube_00.png background (sampled)
 
 \definecolorstyle{Mono}{
   % colour definitions (unused — defined above)
 }{
-  \colorlet{backgroundcolor}{white}
+  \colorlet{backgroundcolor}{vkbg}
   \colorlet{framecolor}{monoDeep}
   % title bar
-  \colorlet{titlebgcolor}{monoDeep}
+  \colorlet{titlebgcolor}{monoDark}
   \colorlet{titlefgcolor}{white}
   % block title
   \colorlet{blocktitlebgcolor}{monoDark}
@@ -30,7 +31,7 @@
   % inner block
   \colorlet{innerblocktitlebgcolor}{monoMid}
   \colorlet{innerblocktitlefgcolor}{white}
-  \colorlet{innerblockbodybgcolor}{monoLight!30}
+  \colorlet{innerblockbodybgcolor}{monoLight!45}
   \colorlet{innerblockbodyfgcolor}{black}
   % notes
   \colorlet{notebgcolor}{monoLight}
@@ -54,9 +55,9 @@
 \newcommand{\todo}[1]{\textcolor{red}{[#1]}}
 
 % ── Custom colours ─────────────────────────────────────────────────────────
-\definecolor{borgblue}{HTML}{1A3C5E}
-\definecolor{borgorange}{HTML}{E87722}
-\definecolor{borggreen}{HTML}{2E7D32}
+\definecolor{borgblue}{HTML}{085868}   % matches dark teal
+\definecolor{borgorange}{HTML}{E87722} % warm amber — complement to teal
+\definecolor{borggreen}{HTML}{1A9080}  % vivid teal-green for checkmarks
 
 % ── Custom block style ─────────────────────────────────────────────────────
 \newcommand{\done}{\textcolor{borggreen}{$\checkmark$}}
@@ -171,9 +172,15 @@ Running on \textbf{pico-ice} (iCE40 UP5K, 5280 LCs):
   \item CPU-orchestrated (GPU autonomy = Phase 2, in progress)
 \end{itemize}
 
-\medskip
-\textbf{Bandwidth note:} Current bottleneck is shared CPU/GPU PSRAM access.
-GPU DMA engine (Step 22) will eliminate CPU involvement in rendering.
+  \medskip
+  \begin{center}
+    \includegraphics[width=0.85\linewidth]{vkcube_00}\\[0.4em]
+    {\small\itshape VkCube running in Verilator simulation (500$\times$500)}
+  \end{center}
+
+  \medskip
+  \textbf{Bandwidth note:} Current bottleneck is shared CPU/GPU PSRAM access.
+  GPU DMA engine (Step 22) will eliminate CPU involvement in rendering.
 }
 
 \column{0.25}
@@ -205,7 +212,6 @@ a full GPU pipeline in 5\,280 logic cells.
 \midrule
 TTIHP26a & IHP SG13G2 130\,nm  & FP adder peripheral   & Mar 2026 \\
 TTSKY26a & SkyWater SKY130     & Triangle rasteriser   & May 2026 \\
-GF180    & GlobalFoundries 180\,nm& Diffuse shader ASIC & 2022 \\
 \bottomrule
 \end{tabular}
 
