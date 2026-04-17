@@ -94,13 +94,14 @@
   \item Every commercial GPU hides its microarchitecture behind NDAs
   \item This blocks \textbf{reproducibility}, \textbf{teaching}, and
         architectural experiments
-  \item \textbf{Concise:} Entire hardware is just \textbf{1513 lines of Scala}
+  \item \textbf{Concise:} Hardware (\textbf{1513 LoC} Scala), Compiler (\textbf{1600 LoC} Python), Firmware (\textbf{2000 LoC} C). Total stack \textbf{< 6k lines}.
   \item Open GPU simulators exist — but \emph{no open GPU has reached silicon}
 \end{itemize}
 
 \medskip
 \textbf{Borg} is the fully open answer: a TBDR GPU \textbf{SoC} in Chisel,
 built with an open toolchain, and \textbf{taped out twice on real silicon}.
+Borg has contributed \textbf{68 patches upstream} to the open EDA ecosystem.
 Integrating the \textbf{TinyQV} RISC-V core (by Michael Bell), Borg provides
 a complete system-level open-source hardware reference.
 
@@ -161,11 +162,19 @@ DSPs           & 1            & 8 \\
 \begin{tabular}{@{}ll@{}}
 \textbf{HDL}        & Chisel (Scala, \textbf{1513 lines}) \\
 \textbf{Synthesis}  & Yosys \\
-\textbf{P\&R}       & nextpnr-ice40 / LibreLane \\
+\textbf{P\&R}       & nextpnr-ice40 / \textbf{LibreLane} (Nix) \\
 \textbf{Simulation} & Verilator, cocotb, Arcilator \\
-\textbf{Compiler}   & SPIR-V $\to$ SPIR-B \\
+\textbf{Compiler}   & SPIR-V $\to$ SPIR-B (\textbf{1600 lines} Python) \\
+\textbf{Firmware}   & 32-bit RISC-V (\textbf{2000 lines} C) \\
 \textbf{Reg.\ map}  & PeakRDL-chisel \\
+\textbf{Math Cores} & \textbf{Berkeley Hardfloat} (FMA) \\
 \end{tabular}
+
+\medskip
+\centering
+\textbf{Reproducible Build:} \texttt{direnv} + \textbf{Nix} flakes. \\
+Zero-install setup for all 18+ EDA tools. \\
+\textbf{Ecosystem Impact:} Pioneers the first fully reproducible ASIC flow in \texttt{nixpkgs} (LibreLane merged Jan 2026).
 }
 
 \block{Comparison with Related Open GPUs}{
@@ -349,6 +358,8 @@ Next Generation Internet programme.
     \item \textbf{C. Wolf}, \emph{Yosys Open SYnthesis Suite}, 2012.
     \item \textbf{M. Venn}, \emph{Tiny Tapeout: Open Access Silicon}, tinytapeout.com, 2023.
     \item \textbf{SkyWater/IHP}, \emph{Open Source 130\,nm PDKs}, 2020--2024.
+    \item \textbf{Berkeley HW Group}, \emph{Hardfloat: Chisel FPU Cores}, 2018.
+    \item \textbf{A. Wendleder}, \emph{LibreLane init in nixpkgs}, PR \#471712, 2026.
   \end{enumerate}
 }
 
