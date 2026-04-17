@@ -8,32 +8,25 @@
 \useblockstyle{Basic}
 
 % ── Teal palette (derived from vkcube_00.png render) ───────────────────────
-\definecolor{monoDeep}{HTML}{082830}   % near-black teal (from vkcube)
-\definecolor{monoDark}{HTML}{085868}   % dark teal  (dominant vkcube hue)
-\definecolor{monoMid} {HTML}{2E6878}   % mid teal
-\definecolor{monoLight}{HTML}{C8E8E8}  % very pale teal
-\definecolor{vkbg}    {HTML}{323232}   % vkcube_00.png background (sampled)
-
 \definecolorstyle{Mono}{
-  % colour definitions (unused — defined above)
+  \definecolor{monoDeep}{HTML}{082830}   % near-black teal
+  \definecolor{monoDark}{HTML}{085868}   % dark teal
+  \definecolor{monoMid} {HTML}{2E6878}   % mid teal
+  \definecolor{monoLight}{HTML}{C8E8E8}  % very pale teal
+  \definecolor{vkbg}    {HTML}{323232}   % vkcube_00.png background
 }{
   \colorlet{backgroundcolor}{vkbg}
   \colorlet{framecolor}{monoDeep}
-  % title bar
   \colorlet{titlebgcolor}{monoDark}
   \colorlet{titlefgcolor}{white}
-  % block title
   \colorlet{blocktitlebgcolor}{monoDark}
   \colorlet{blocktitlefgcolor}{white}
-  % block body
-  \colorlet{blockbodybgcolor}{monoLight!60}
+  \colorlet{blockbodybgcolor}{monoLight}
   \colorlet{blockbodyfgcolor}{black}
-  % inner block
   \colorlet{innerblocktitlebgcolor}{monoMid}
   \colorlet{innerblocktitlefgcolor}{white}
-  \colorlet{innerblockbodybgcolor}{monoLight!45}
+  \colorlet{innerblockbodybgcolor}{monoLight}
   \colorlet{innerblockbodyfgcolor}{black}
-  % notes
   \colorlet{notebgcolor}{monoLight}
   \colorlet{notefgcolor}{monoDeep}
   \colorlet{notefrcolor}{monoDark}
@@ -276,8 +269,10 @@ and by the Swiss State Secretariat for Education, Research and Innovation (SERI)
 
 \block{References}{
 \small
-[1] Woop et al.\ \emph{RPU: A Programmable Ray Processing Unit}, SIGGRAPH 2005.\\
-[2] Borg GPU book: \url{https://gonsolo.github.io/Borg}\\
+[1] Woop et al.\ \emph{RPU: A Programmable Ray Processing Unit}, SIGGRAPH 2005.
+
+[2] Borg GPU book: \url{https://gonsolo.github.io/Borg}
+
 [3] Source: \url{https://github.com/gonsolo/Borg}
 }
 
