@@ -1,7 +1,7 @@
 LATEXMK = latexmk
 PDFLATEX = pdflatex
 
-.PHONY: all poster abstract view clean
+.PHONY: all edit poster abstract view clean
 
 all: poster abstract
 
@@ -12,6 +12,9 @@ poster.pdf: poster.tex
 
 abstract:
 	-$(LATEXMK) -pdf -f -interaction=nonstopmode abstract.tex
+
+edit:
+	vim poster.tex
 
 view: poster.pdf
 	papers poster.pdf
