@@ -118,24 +118,8 @@ The GPU follows the Tile-Based Deferred Rendering paradigm:
 
 \medskip
 \begin{center}
-\begin{tikzpicture}[
-  box/.style={draw=borgblue, fill=borgblue!10, rounded corners,
-              minimum width=6cm, minimum height=1.2cm,
-              font=\small\bfseries, align=center},
-  arr/.style={->, thick, color=borgorange},
-  node distance=1.4cm
-]
-\node[box] (vs)   {Vertex Shader\\(perspective proj.)};
-\node[box] (clip) [below=of vs]  {Triangle Clipping};
-\node[box] (ef)   [below=of clip]{Edge Function Unit};
-\node[box] (ras)  [below=of ef]  {Pixel Iterator\\(Rasterizer)};
-\node[box] (tex)  [below=of ras] {Texture Fetch\\(PSRAM)};
-\node[box] (frag) [below=of tex] {Fragment Interpolation\\+ Z-Buffer};
-\node[box] (tile) [below=of frag]{Tile Buffer\\(BRAM, Morton enc.)};
-\draw[arr] (vs)--(clip); \draw[arr](clip)--(ef);
-\draw[arr] (ef)--(ras);  \draw[arr](ras)--(tex);
-\draw[arr] (tex)--(frag);\draw[arr](frag)--(tile);
-\end{tikzpicture}
+  \includegraphics[width=\linewidth]{hw_diagram}\\[0.3em]
+  {\small\itshape Hardware module diagram (generated from Chisel sources)}
 \end{center}
 
 \medskip
@@ -344,7 +328,9 @@ inspect the layout and modify logic without NDAs.
 \medskip
 Borg is funded by the \textbf{NGI0 Commons Fund}, established by
 NLnet Foundation with financial support from the European Commission's
-Next Generation Internet programme.
+Next Generation Internet programme
+(Grant Agreement No.~101135429, DG~CONNECT),
+and by the Swiss State Secretariat for Education, Research and Innovation (SERI).
 }
 
 \block{Selected References}{
@@ -383,6 +369,10 @@ Next Generation Internet programme.
   \texttt{andreas.wendleder@proton.me} \\
   \texttt{orcid.org/0009-0008-8304-2818}
 \end{center}
+
+\medskip
+\centering \footnotesize
+Development supported by AI-augmented pair-programming.
 }
 
 \end{columns}
